@@ -34,4 +34,3 @@ For each selected prime \(p\), the browser enumerates all residue pairs \((x,y)\
 2. Add the smooth/singular local-geometry lesson from the earlier chat: tangent spaces, \(M_P/M_P^2\), orders of vanishing, and why the singular local ring fails to be a discrete valuation ring.
 3. If full catalog search is desired, choose a licensed and documented LMFDB data access route, cache with provenance and timestamps, and display coverage limits from LMFDB's completeness pages.
 4. Add exact rational arithmetic for point addition; the current browser graph and calculator use JavaScript numbers and integer-point menus.
-
