@@ -124,4 +124,3 @@ document.querySelectorAll('[data-preset]').forEach(el=>el.addEventListener('clic
 $('primeSelect').addEventListener('change',e=>{state.p=Number(e.target.value);renderField();});
 $('pointP').addEventListener('change',renderPlot);$('pointQ').addEventListener('change',renderPlot);
 renderHero();render();
-
