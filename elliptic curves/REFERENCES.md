@@ -1,6 +1,6 @@
 # Elliptic Curve Atlas: reference map
 
-This file records the sources and the decisions behind the first release. It is a reading list and a provenance record, not a claim that the site reproduces LMFDB's database.
+This file records the sources and the decisions behind the first release and the Math Is Art concept. It is a reading list and a provenance record, not a claim that the site reproduces LMFDB's database.
 
 ## Questions carried forward from our chats
 
@@ -24,7 +24,7 @@ This file records the sources and the decisions behind the first release. It is 
 
 The browser works with integral \(a,b\) between −12 and 12 and the short equation \(y^2=x^3+ax+b\). It displays real points in a finite viewport. The discriminant is \(\Delta=-16(4a^3+27b^2)\); \(\Delta\ne0\) is the smoothness condition in characteristic zero. The displayed \(j\)-invariant is \(1728\cdot4a^3/(4a^3+27b^2)\).
 
-Integral points are found only by checking integer \(x\) from −50 to 50 and whether \(x^3+ax+b\) is a square. This search is **bounded** and does not establish all integral points. Point addition uses the usual secant or tangent slope and the formulas \(x_{P+Q}=m^2-x_P-x_Q\), \(y_{P+Q}=m(x_P-x_{P+Q})-y_P\). The UI rounds coordinates for display.
+Integral points are found only by checking integer \(x\) from −50 to 50 and whether \(x^3+ax+b\) is a square. This search is **bounded** and does not establish all integral points. Point addition uses the usual secant or tangent slope and the formulas \(x_{P+Q}=m^2-x_P-x_Q\), \(y_{P+Q}=m(x_P-x_{P+Q})-y_P\). Selected integral points are now added with exact rational arithmetic and displayed as fractions; the SVG plot uses JavaScript numbers for illustration.
 
 For each selected prime \(p\), the browser enumerates all residue pairs \((x,y)\) and counts solutions of \(y^2\equiv x^3+ax+b\pmod p\), then adds one for the point at infinity. When \(p\mid\Delta\), it marks the displayed model as singular modulo \(p\) and withholds the elliptic-curve group count. If a nonminimal model is used later, distinguish bad reduction of that model from bad reduction of the curve.
 
@@ -33,4 +33,4 @@ For each selected prime \(p\), the browser enumerates all residue pairs \((x,y)\
 1. Add a worked 11.a tutorial with exact five-coefficient formulas, model changes, conductor, local reduction, rank, torsion, and isogeny maps, checking every value against LMFDB and SageMath.
 2. Add the smooth/singular local-geometry lesson from the earlier chat: tangent spaces, \(M_P/M_P^2\), orders of vanishing, and why the singular local ring fails to be a discrete valuation ring.
 3. If full catalog search is desired, choose a licensed and documented LMFDB data access route, cache with provenance and timestamps, and display coverage limits from LMFDB's completeness pages.
-4. Add exact rational arithmetic for point addition; the current browser graph and calculator use JavaScript numbers and integer-point menus.
+4. Expand point selection beyond integral points to arbitrary rational coordinates, and add more guided journeys using exact calculations.

@@ -6,7 +6,7 @@ let visiblePoints = [];
 function signed(n, variable = '') { return n === 0 ? '' : `${n < 0 ? ' − ' : ' + '}${Math.abs(n) === 1 && variable ? '' : Math.abs(n)}${variable}`; }
 function equation(a, b) { return `y² = x³${signed(a, 'x')}${signed(b)}`; }
 function fmt(n, places = 3) { return Number.isInteger(n) ? String(n) : Number(n.toFixed(places)).toString(); }
-function pointText(P) { return P ? `(${fmt(P.x)}, ${fmt(P.y)})` : 'O'; }
+function pointText(P) { return P ? `(${P.xExact ?? fmt(P.x)}, ${P.yExact ?? fmt(P.y)})` : 'O'; }
 function rhs(x, a = state.a, b = state.b) { return x*x*x + a*x + b; }
 function discriminant(a = state.a, b = state.b) { return -16 * (4*a*a*a + 27*b*b); }
 function integralPoints(a, b, bound = 50) {
@@ -19,15 +19,24 @@ function integralPoints(a, b, bound = 50) {
   }
   return points.sort((P,Q) => P.x-Q.x || Q.y-P.y);
 }
+function gcd(a,b) { a=a<0n?-a:a; b=b<0n?-b:b; while(b){[a,b]=[b,a%b];} return a; }
+function rational(n,d=1n) { if(d<0n){n=-n;d=-d;} const g=gcd(n,d); return {n:n/g,d:d/g}; }
+function radd(a,b) { return rational(a.n*b.d+b.n*a.d,a.d*b.d); }
+function rsub(a,b) { return rational(a.n*b.d-b.n*a.d,a.d*b.d); }
+function rmul(a,b) { return rational(a.n*b.n,a.d*b.d); }
+function rdiv(a,b) { return rational(a.n*b.d,a.d*b.n); }
+function rstr(a) { return a.d===1n?String(a.n):`${a.n}/${a.d}`; }
+function rnum(a) { return Number(a.n)/Number(a.d); }
 function add(P,Q) {
   if (!P) return { result: Q, slope: null, kind: 'identity' };
   if (!Q) return { result: P, slope: null, kind: 'identity' };
   if (P.x === Q.x && P.y === -Q.y) return { result: null, slope: null, kind: 'vertical' };
   const doubling = P.x === Q.x && P.y === Q.y;
-  const slope = doubling ? (3*P.x*P.x+state.a)/(2*P.y) : (Q.y-P.y)/(Q.x-P.x);
-  const x = slope*slope-P.x-Q.x;
-  const y = slope*(P.x-x)-P.y;
-  return { result: {x,y}, slope, kind: doubling ? 'tangent' : 'secant' };
+  const px=rational(BigInt(P.x)), py=rational(BigInt(P.y)), qx=rational(BigInt(Q.x)), qy=rational(BigInt(Q.y));
+  const m = doubling ? rational(BigInt(3*P.x*P.x+state.a),BigInt(2*P.y)) : rdiv(rsub(qy,py),rsub(qx,px));
+  const xr=rsub(rsub(rmul(m,m),px),qx);
+  const yr=rsub(rmul(m,rsub(px,xr)),py);
+  return { result: {x:rnum(xr),y:rnum(yr),xExact:rstr(xr),yExact:rstr(yr)}, slope:rnum(m), slopeExact:rstr(m), kind: doubling ? 'tangent' : 'secant' };
 }
 function line(svg, x1,y1,x2,y2,stroke,width=1,opacity=1,dash='') {return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="${width}" opacity="${opacity}" ${dash?`stroke-dasharray="${dash}"`:''}/>`;}
 function plotMarkup(width,height,a,b,dark=false,addition=null) {
@@ -74,7 +83,7 @@ function renderPlot(){
   if(discriminant()===0){$('sumResult').textContent='This cubic is singular';$('additionFormula').textContent='The elliptic curve group law needs a smooth curve (Δ ≠ 0).';return;}
   if(!sum){$('sumResult').textContent='Choose two points to add';$('additionFormula').textContent='Integral points in the current plot window appear in the menus.';return;}
   $('sumResult').textContent=`${pointText(P)} + ${pointText(Q)} = ${pointText(sum.result)}`;
-  $('additionFormula').textContent=sum.kind==='vertical'?'Vertical line: P and Q are inverses, so P + Q = O.':`${sum.kind==='tangent'?'Tangent at P':'Secant through P and Q'}: slope m = ${fmt(sum.slope)}. Reflect the third intersection across the x-axis.`;
+  $('additionFormula').textContent=sum.kind==='vertical'?'Vertical line: P and Q are inverses, so P + Q = O.':`${sum.kind==='tangent'?'Tangent at P':'Secant through P and Q'}: exact slope m = ${sum.slopeExact}. Reflect the third intersection across the x-axis.`;
 }
 function renderPoints(){
   const all=integralPoints(state.a,state.b);
@@ -123,4 +132,36 @@ for(const key of ['a','b']){ $(`${key}Input`).addEventListener('change',e=>setCo
 document.querySelectorAll('[data-preset]').forEach(el=>el.addEventListener('click',()=>{[state.a,state.b]=el.dataset.preset.split(',').map(Number);render();}));
 $('primeSelect').addEventListener('change',e=>{state.p=Number(e.target.value);renderField();});
 $('pointP').addEventListener('change',renderPlot);$('pointQ').addEventListener('change',renderPlot);
-renderHero();render();
+let journeyStage=0;
+function renderJourney(){
+  const width=760,height=520,pad=45;
+  const X=x=>pad+(x-limits.x0)/(limits.x1-limits.x0)*(width-2*pad);
+  const Y=y=>height-pad-(y-limits.y0)/(limits.y1-limits.y0)*(height-2*pad);
+  const dot=(x,y,label,color,dx=10,dy=-10)=>`<circle cx="${X(x)}" cy="${Y(y)}" r="7" fill="${color}" stroke="#fff" stroke-width="2"/><text x="${X(x)+dx}" y="${Y(y)+dy}" fill="${color}" font-family="Arial" font-size="16" font-weight="bold">${label}</text>`;
+  let marks=dot(0,1,'P','#d27857')+dot(1,1,'Q','#d27857');
+  if(journeyStage>=1){marks+=line(X(limits.x0),Y(1),X(limits.x1),Y(1),'#d27857',2.5,.9,'7 5')+dot(-1,1,'R','#d27857',-24,-9);}
+  if(journeyStage>=2){marks+=line(X(-1),Y(1),X(-1),Y(-1),'#d27857',2,.8,'5 5')+dot(-1,-1,'P + Q','#126b60');}
+  $('journeyPlot').innerHTML=plotMarkup(width,height,-1,1)+marks;
+  $('journeyPlot').setAttribute('aria-label',journeyStage===0?'Curve y squared equals x cubed minus x plus one, with P at zero comma one and Q at one comma one.':journeyStage===1?'A horizontal line through P and Q also meets the curve at R, negative one comma one.':'The third intersection R is reflected across the x-axis to give P plus Q at negative one comma negative one.');
+  const prompts=[
+    'On <strong>y² = x³ − x + 1</strong>, begin with <strong>P = (0, 1)</strong> and <strong>Q = (1, 1)</strong>. Both points have rational coordinates. What happens if we draw the line through them?',
+    'The line is <strong>y = 1</strong>. It meets the curve again at <strong>R = (−1, 1)</strong>. In the addition law, which point is <strong>P + Q</strong>?',
+    'Yes. Reflect R across the x-axis. The sum is <strong>P + Q = (−1, −1)</strong>. Why should a construction like this always produce rational coordinates?',
+    'The picture suggests a rule. The formulas make it exact, and the point at infinity completes the operation.'
+  ];
+  $('journeyPrompt').innerHTML=prompts[journeyStage];
+  $('journeyCaption').textContent=journeyStage===0?'P = (0, 1) · Q = (1, 1)':journeyStage===1?'The line y = 1 meets the curve at R = (−1, 1)':'P + Q = (−1, −1) · EXACT RATIONAL COORDINATES';
+  const controls=$('journeyControls');
+  controls.innerHTML=journeyStage===0?'<button type="button" class="journey-button" data-journey="line">Draw the line ↗</button>':journeyStage===1?'<button type="button" class="journey-choice" data-journey="third">R = (−1, 1)</button><button type="button" class="journey-choice" data-journey="reflect">Its reflection = (−1, −1)</button>':journeyStage===2?'<button type="button" class="journey-button" data-journey="theorem">Reveal the theorem ↗</button>':'<a class="journey-button" href="#explorer">Explore other curves ↓</a>';
+  $('journeyTheorem').hidden=journeyStage!==3;
+  [...document.querySelectorAll('.journey-progress span')].forEach((el,i)=>el.classList.toggle('active',i===Math.min(journeyStage,2)));
+}
+$('journeyControls').addEventListener('click',e=>{
+  const action=e.target.closest('[data-journey]')?.dataset.journey;
+  if(!action)return;
+  if(action==='third'){$('journeyFeedback').textContent='R is the third intersection. The group law takes one more move: reflect R across the x-axis.';return;}
+  journeyStage=action==='line'?1:action==='reflect'?2:3;
+  $('journeyFeedback').textContent=action==='reflect'?'Exactly: reflect the third intersection to obtain the sum.':'';
+  renderJourney();
+});
+renderHero();render();renderJourney();
