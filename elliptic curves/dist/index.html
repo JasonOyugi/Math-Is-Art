@@ -3,54 +3,149 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#151a2e">
-  <meta name="description" content="Math Is Art: a visual laboratory for mathematical invention. Make a move, find a pattern, and discover the theorem behind it.">
-  <title>Math Is Art — make a move, find a pattern</title>
+  <meta name="theme-color" content="#ef9bb7">
+  <meta name="description" content="Math Is Art: five forthcoming chapters in a visual atlas of mathematical ideas.">
+  <title>Chapters — Math Is Art</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./home.css">
-  <script src="./home.js" defer></script>
+  <link rel="stylesheet" href="./carousel.css">
+  <script src="./carousel.js" defer></script>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-  <header class="topbar">
-    <a class="wordmark" href="./index.html" aria-label="Math Is Art home"><span class="brand-symbol" aria-hidden="true">∈</span> MATH <i>IS</i> ART<span class="brand-period">.</span></a>
-    <nav aria-label="Main navigation"><a href="#ideas">The idea</a><a href="#exhibitions">Exhibitions</a><a href="#subjects">Subjects</a><a href="#reading-room">Reading room</a></nav>
-    <a class="top-cta" href="./elliptic-curves.html#journey">Enter the lab <span aria-hidden="true">↗</span></a>
-  </header>
-  <main id="main">
-    <section class="hero" aria-labelledby="hero-title">
-      <div class="hero-inner">
-        <div class="hero-copy">
-          <div class="kicker"><span class="spark" aria-hidden="true"></span> A VISUAL LABORATORY FOR MATHEMATICS</div>
-          <h1 id="hero-title">Make a move.<br><em>Find a pattern.</em><br>Invent a language.</h1>
-          <p>Mathematics begins when someone sees a possibility that was not obvious before. Here, you can test an idea with your hands, follow its consequences, and meet the theorem it becomes.</p>
-          <div class="hero-actions"><a class="button light" href="./elliptic-curves.html#journey">Try the first experiment <span aria-hidden="true">↗</span></a><a class="quiet-link" href="#ideas">How this works <span aria-hidden="true">↓</span></a></div>
-        </div>
-        <div class="hero-lab" aria-labelledby="lab-heading">
-          <div class="lab-top"><span>LIVE EXPERIMENT / 001</span><span>ELLIPTIC CURVES</span></div>
-          <h2 id="lab-heading">Can two points make a third?</h2>
-          <p>Choose a move on <span class="math">y² = x³ − x + 1</span>.</p>
-          <div class="move-buttons" role="group" aria-label="Choose an elliptic curve move"><button type="button" class="move active" data-move="chord" aria-pressed="true">Draw a chord</button><button type="button" class="move" data-move="tangent" aria-pressed="false">Draw a tangent</button></div>
-          <svg id="homePlot" viewBox="0 0 600 390" role="img" aria-label="Interactive plot of an elliptic curve"></svg>
-          <div class="lab-result" id="homeResult" aria-live="polite"></div>
-          <a class="lab-link" href="./elliptic-curves.html#journey">Why does this work? <span aria-hidden="true">→</span></a>
-        </div>
+  <a class="skip-link" href="#chapters">Skip to chapters</a>
+  <div class="scene" id="scene">
+    <div class="scene-disc" aria-hidden="true"></div>
+    <svg class="scene-grain" aria-hidden="true" viewBox="0 0 100 100" preserveAspectRatio="none"><filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".55" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(#grain)"/></svg>
+    <header class="site-header">
+      <div class="header-center">
+        <span class="header-pill">chapters</span>
+        <a class="site-logo" href="./index.html" aria-label="Math Is Art home">math<br><span>is art</span><b>·</b></a>
+        <button class="header-about" id="aboutButton" type="button">about</button>
       </div>
-      <div class="hero-rail"><span>01 / EXPERIMENT</span><span>02 / CONJECTURE</span><span>03 / PROOF</span><span>SCROLL TO EXPLORE ↓</span></div>
-    </section>
+      <span class="header-edition">AN ATLAS OF IDEAS <span>01 / 05</span></span>
+    </header>
 
-    <section class="manifesto section" id="ideas"><div class="container manifesto-grid"><div class="section-index">THE IDEA <span>01 — 04</span></div><div><h2>See the creative act<br><em>inside the theorem.</em></h2><p class="lead">A theorem is a finished sentence. The interesting story is how someone found the right question, changed the picture, noticed what stayed fixed, and invented a way to say why.</p><div class="moves"><article><span>01</span><h3>Choose a representation</h3><p>Draw the object, write an equation, or turn it into a symmetry.</p></article><article><span>02</span><h3>Make a move</h3><p>Vary a condition. Glue, reflect, permute, or count.</p></article><article><span>03</span><h3>Find what survives</h3><p>Follow an invariant through the change, then risk a conjecture.</p></article><article><span>04</span><h3>Build the proof</h3><p>Learn why the pattern holds, and where its assumptions matter.</p></article></div></div></div></section>
+    <main class="carousel" id="chapters" aria-label="Math Is Art chapters">
+      <h1 class="sr-only">Math Is Art: choose a chapter</h1>
+      <p class="side-label">FIVE CHAPTERS IN THE MAKING <span aria-hidden="true">✳</span></p>
+      <div class="carousel-track" id="carouselTrack">
+        <article class="chapter" data-chapter="0">
+          <button class="chapter-face" type="button" data-card="0" aria-label="Open Arithmetic of curves chapter preview">
+            <span class="poster poster-curves">
+              <svg class="poster-art" viewBox="0 0 600 600" aria-hidden="true">
+                <defs><pattern id="curve-grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#1c2441" stroke-opacity=".13" stroke-width="1"/></pattern></defs>
+                <rect width="600" height="600" fill="url(#curve-grid)"/>
+                <circle cx="452" cy="375" r="225" fill="#ff755d"/>
+                <circle cx="443" cy="370" r="162" fill="none" stroke="#f9dfa1" stroke-width="2"/>
+                <path d="M-40 505 C80 335 170 483 244 454 S322 258 391 354 S490 551 638 312" fill="none" stroke="#211a3d" stroke-width="17" stroke-linecap="round"/>
+                <path d="M-40 520 C80 350 170 498 244 469 S322 273 391 369 S490 566 638 327" fill="none" stroke="#fff2c7" stroke-width="4"/>
+                <path d="M99 500L522 291" stroke="#1e1d3c" stroke-width="3" stroke-dasharray="12 9"/>
+                <circle cx="224" cy="438" r="17" fill="#f4eac6" stroke="#1e1d3c" stroke-width="6"/><circle cx="391" cy="354" r="17" fill="#f4eac6" stroke="#1e1d3c" stroke-width="6"/><circle cx="491" cy="439" r="17" fill="#f4eac6" stroke="#1e1d3c" stroke-width="6"/>
+                <text x="30" y="550" fill="#1e1d3c" font-size="15" font-family="Arial" font-weight="700" letter-spacing="6">P + Q = R</text>
+              </svg>
+              <span class="poster-sticker sticker-curves">01<span>⁄</span>05</span>
+              <span class="poster-title">ARITHMETIC<br><i>of</i> CURVES</span>
+              <span class="poster-footer">MATH IS ART <span>CURVES / ℚ</span></span>
+            </span>
+          </button>
+        </article>
+        <article class="chapter" data-chapter="1">
+          <button class="chapter-face" type="button" data-card="1" aria-label="Select Differential geometry of curves">
+            <span class="poster poster-differential">
+              <svg class="poster-art" viewBox="0 0 600 600" aria-hidden="true">
+                <circle cx="366" cy="379" r="250" fill="#fbe46b"/>
+                <circle cx="366" cy="379" r="207" fill="none" stroke="#f56b79" stroke-width="15"/>
+                <circle cx="366" cy="379" r="160" fill="none" stroke="#f56b79" stroke-width="7" stroke-dasharray="10 13"/>
+                <path d="M-45 560 C62 532 92 382 195 411 S329 577 420 447 S552 187 655 190" fill="none" stroke="#142c6a" stroke-width="22" stroke-linecap="round"/>
+                <path d="M130 351L428 476M360 552L533 244" stroke="#f15d71" stroke-width="8" stroke-linecap="round"/>
+                <circle cx="200" cy="411" r="14" fill="#fff4d5" stroke="#142c6a" stroke-width="6"/><circle cx="426" cy="443" r="14" fill="#fff4d5" stroke="#142c6a" stroke-width="6"/>
+                <path d="M106 485l24-25m0 0l-24-5m24 5l-4 24M493 314l24-26m0 0l-24-4m24 4l-4 25" fill="none" stroke="#142c6a" stroke-width="4"/>
+              </svg>
+              <span class="poster-sticker sticker-differential">02<span>⁄</span>05</span>
+              <span class="poster-title">DIFFERENTIAL<br>GEOMETRY<br><i>of curves</i></span>
+              <span class="poster-footer">MATH IS ART <span>TANGENTS / κ</span></span>
+            </span>
+          </button>
+        </article>
+        <article class="chapter" data-chapter="2">
+          <button class="chapter-face" type="button" data-card="2" aria-label="Select Galois theory">
+            <span class="poster poster-galois">
+              <svg class="poster-art" viewBox="0 0 600 600" aria-hidden="true">
+                <circle cx="308" cy="355" r="205" fill="#ffcc72" stroke="#1e2043" stroke-width="4"/>
+                <circle cx="308" cy="355" r="157" fill="none" stroke="#1e2043" stroke-width="3" stroke-dasharray="5 10"/>
+                <path d="M308 198L444 434L172 434Z" fill="none" stroke="#2b2d61" stroke-width="9"/>
+                <path d="M309 202C433 258 470 352 446 430M445 434C305 498 214 468 174 435M170 431C135 318 205 238 305 203" fill="none" stroke="#f03f76" stroke-width="5" stroke-linecap="round" stroke-dasharray="17 12"/>
+                <circle cx="308" cy="198" r="37" fill="#343284"/><circle cx="444" cy="434" r="37" fill="#343284"/><circle cx="172" cy="434" r="37" fill="#343284"/>
+                <text x="295" y="213" fill="#fff0ce" font-size="41" font-family="Georgia">α</text><text x="431" y="449" fill="#fff0ce" font-size="41" font-family="Georgia">β</text><text x="160" y="449" fill="#fff0ce" font-size="41" font-family="Georgia">γ</text>
+                <text x="453" y="251" fill="#2b2d61" font-size="100" font-family="Georgia">σ</text>
+              </svg>
+              <span class="poster-sticker sticker-galois">03<span>⁄</span>05</span>
+              <span class="poster-title">GALOIS<br><i>theory</i></span>
+              <span class="poster-footer">MATH IS ART <span>ROOTS / SYMMETRY</span></span>
+            </span>
+          </button>
+        </article>
+        <article class="chapter" data-chapter="3">
+          <button class="chapter-face" type="button" data-card="3" aria-label="Select Classification of surfaces">
+            <span class="poster poster-surfaces">
+              <svg class="poster-art" viewBox="0 0 600 600" aria-hidden="true">
+                <circle cx="326" cy="368" r="222" fill="#68bdac"/>
+                <path d="M114 373C125 261 216 201 331 211c113 9 193 81 187 177-7 112-104 171-216 163-124-9-199-76-188-178Z" fill="#47a895" stroke="#193947" stroke-width="9"/>
+                <path d="M169 362C166 296 236 254 323 255c86 0 151 46 147 112-4 68-71 105-153 103-85-2-145-41-148-108Z" fill="#ffcb99" stroke="#193947" stroke-width="9"/>
+                <path d="M173 370C207 426 263 447 318 447c73 0 123-28 150-80M151 309C250 272 400 280 492 322M159 424c84-21 243-16 333 29M255 226c-23 84-22 227 3 302m91-314c-19 88-14 244 20 327" fill="none" stroke="#1d4f54" stroke-width="4" opacity=".75"/>
+                <path d="M68 499l52-25m0 0l-33-15m33 15l-8 34M515 209l-35 22m0 0l31 15m-31-15l3-33" fill="none" stroke="#ffebc6" stroke-width="8" stroke-linecap="round"/>
+              </svg>
+              <span class="poster-sticker sticker-surfaces">04<span>⁄</span>05</span>
+              <span class="poster-title">CLASSIFICATION<br><i>of</i> SURFACES</span>
+              <span class="poster-footer">MATH IS ART <span>SHAPE / GENUS</span></span>
+            </span>
+          </button>
+        </article>
+        <article class="chapter" data-chapter="4">
+          <button class="chapter-face" type="button" data-card="4" aria-label="Select The spectral theorem">
+            <span class="poster poster-spectral">
+              <svg class="poster-art" viewBox="0 0 600 600" aria-hidden="true">
+                <circle cx="310" cy="345" r="220" fill="#27386c" stroke="#e8dba3" stroke-width="2"/>
+                <circle cx="310" cy="345" r="175" fill="none" stroke="#f4858d" stroke-width="2" opacity=".6"/>
+                <circle cx="310" cy="345" r="120" fill="none" stroke="#82e8bd" stroke-width="2" opacity=".65"/>
+                <path d="M75 422 C115 422 115 312 155 312 S195 476 235 476 S275 235 315 235 S355 444 395 444 S435 283 475 283 S515 383 555 383" fill="none" stroke="#f5cc60" stroke-width="16" stroke-linecap="round"/>
+                <path d="M75 447 C115 447 115 337 155 337 S195 501 235 501 S275 260 315 260 S355 469 395 469 S435 308 475 308 S515 408 555 408" fill="none" stroke="#f77e93" stroke-width="5" stroke-linecap="round"/>
+                <path d="M132 224v254m75-273v289m75-305v328m75-308v286m75-262v231" stroke="#85e6c1" stroke-width="3" stroke-dasharray="8 9" opacity=".6"/>
+                <circle cx="315" cy="235" r="15" fill="#f3dfaa"/><circle cx="395" cy="444" r="15" fill="#f3dfaa"/>
+              </svg>
+              <span class="poster-sticker sticker-spectral">05<span>⁄</span>05</span>
+              <span class="poster-title">THE<br>SPECTRAL<br><i>theorem</i></span>
+              <span class="poster-footer">MATH IS ART <span>OPERATORS / λ</span></span>
+            </span>
+          </button>
+        </article>
+      </div>
 
-    <section class="exhibitions section" id="exhibitions"><div class="container"><div class="section-head"><div><div class="section-index">THE FIRST EXHIBITIONS <span>02 — 04</span></div><h2>Three acts of invention.</h2></div><p>Each exhibition begins with something you can change. Follow it from a visual question to a precise mathematical idea.</p></div><div class="exhibition-grid">
-      <a class="exhibition featured" href="./elliptic-curves.html#journey"><div class="exhibit-art curve-art" aria-hidden="true"><svg viewBox="0 0 500 250"><path d="M5 122C86 203 81 20 185 112S338 214 495 36" fill="none" stroke="currentColor" stroke-width="4"/><path d="M36 70H435" stroke="currentColor" stroke-width="1" stroke-dasharray="7 8"/><circle cx="101" cy="115" r="7"/><circle cx="207" cy="70" r="7"/><circle cx="406" cy="70" r="7"/></svg><span>ℚ</span></div><div class="exhibit-copy"><span>01 / NUMBER THEORY · OPEN NOW</span><h3>Elliptic curves</h3><p>How can one point generate more? Draw a line, reflect an intersection, then discover an arithmetic of points.</p><strong>Enter the exhibition ↗</strong></div></a>
-      <article class="exhibition"><div class="exhibit-art roots-art" aria-hidden="true"><div class="root-orbit"><span>α</span><span>β</span><span>γ</span></div><b>σ</b></div><div class="exhibit-copy"><span>02 / ALGEBRA · IN DEVELOPMENT</span><h3>Galois theory</h3><p>Permute roots. Watch which relationships survive. Ask what a formula can know about a polynomial.</p><a href="#algebra">Explore the question ↗</a></div></article>
-      <article class="exhibition"><div class="exhibit-art surface-art" aria-hidden="true"><div class="surface-loop">↻</div><span>χ = V − E + F</span></div><div class="exhibit-copy"><span>03 / GEOMETRY · IN DEVELOPMENT</span><h3>Classification of surfaces</h3><p>Glue edges and count what survives deformation. How many kinds of closed surface are there?</p><a href="#geometry">Explore the question ↗</a></div></article>
-    </div></div></section>
+      <div class="chapter-control" aria-label="Selected chapter controls">
+        <button class="chapter-open" id="openChapter" type="button" aria-label="Open selected chapter preview"><svg viewBox="0 0 44 48" aria-hidden="true"><path d="M4 3L40 24L4 45Z" fill="currentColor"/></svg></button>
+        <div class="chapter-meta" aria-live="polite"><strong id="activeTitle">01. Arithmetic of curves</strong><span id="activeSubtitle">After Silverman</span><small id="activeCount">01:05 · in preparation</small></div>
+        <div class="chapter-arrows"><button id="prevChapter" type="button" aria-label="Previous chapter">◀</button><button id="nextChapter" type="button" aria-label="Next chapter">▶</button></div>
+      </div>
+      <p class="interaction-hint"><span class="hint-desktop">CLICK A COVER OR USE ← → TO BROWSE</span><span class="hint-mobile">SWIPE OR TAP A COVER TO BROWSE</span></p>
+    </main>
+    <div class="scene-bottom"><button class="fullscreen-button" id="fullscreenButton" type="button" aria-label="Toggle full screen">⛶</button><a href="./elliptic-curves.html#explorer">VISIT THE CURRENT CURVE EXPLORER ↗</a></div>
+  </div>
 
-    <section class="subjects section" id="subjects"><div class="container"><div class="section-head"><div><div class="section-index">A MAP OF IDEAS <span>03 — 04</span></div><h2>Four ways in.<br><em>Countless paths across.</em></h2></div><p>Subjects are entrances. Symmetry, invariants, equivalence, and deformation carry ideas between them.</p></div><div class="subject-list"><a id="number-theory" href="./number-theory.html"><span>01</span><strong>Number theory</strong><em>Arithmetic questions as a meeting place</em><b>Explore ↗</b></a><a id="algebra" href="#algebra-note"><span>02</span><strong>Algebra</strong><em>Structure, operations, and symmetry</em><b>Read ↓</b></a><a id="geometry" href="#geometry-note"><span>03</span><strong>Geometry</strong><em>Shape, space, and classification</em><b>Read ↓</b></a><a id="analysis" href="#analysis-note"><span>04</span><strong>Analysis</strong><em>Change, limits, and flow</em><b>Read ↓</b></a></div><div class="subject-notes"><article id="algebra-note"><span>ALGEBRA</span><h3>What does symmetry reveal?</h3><p>The first algebra lab will let you permute polynomial roots and uncover the relations preserved by each move.</p></article><article id="geometry-note"><span>GEOMETRY</span><h3>What survives deformation?</h3><p>The surface lab will connect edge gluing, orientability, genus, and Euler characteristic.</p></article><article id="analysis-note"><span>ANALYSIS / SHAPE &amp; CHANGE</span><h3>How does a shape evolve?</h3><p>Analysis will join geometry through a future experiment on flow, alongside the other exhibitions.</p></article></div></div></section>
-
-    <section class="reading section" id="reading-room"><div class="container reading-grid"><div><div class="section-index">THE READING ROOM <span>04 — 04</span></div><h2>Play is the beginning.<br><em>Proof takes us further.</em></h2><p>Every lab will show its assumptions, worked examples, source trail, and a route into the deeper mathematics. We are beginning with elliptic curves over the rationals.</p><a class="button dark" href="./elliptic-curves.html#references">Open the elliptic curve sources ↗</a></div><div class="reading-card"><span>FROM THE FIRST FIELD GUIDE</span><div class="reading-equation">y² = x³ + ax + b</div><p>A real drawing, rational points, and points modulo a prime are related views of a curve. Each answers a different question.</p><a href="./elliptic-curves.html#explorer">Explore the curve ↗</a></div></div></section>
-  </main>
-  <footer><div class="container footer-content"><a class="wordmark" href="./index.html"><span class="brand-symbol" aria-hidden="true">∈</span> MATH <i>IS</i> ART<span class="brand-period">.</span></a><p>A visual laboratory for mathematical invention.</p><a href="#main">BACK TO TOP ↑</a></div></footer>
+  <dialog class="preview-dialog" id="chapterDialog" aria-labelledby="dialogTitle">
+    <button class="dialog-close" id="closeDialog" type="button" aria-label="Close preview">×</button>
+    <div class="dialog-kicker" id="dialogNumber">CHAPTER 01 / 05</div>
+    <h2 id="dialogTitle">Arithmetic of curves</h2>
+    <p id="dialogSource">Following Joseph H. Silverman, The Arithmetic of Elliptic Curves.</p>
+    <div class="dialog-status"><span class="status-dot"></span> CHAPTER IN PREPARATION</div>
+    <p class="dialog-note">These five covers are the opening design study. The mathematical chapters will be developed next.</p>
+    <a id="dialogExplorer" class="dialog-link" href="./elliptic-curves.html#explorer">Visit the current curve explorer ↗</a>
+  </dialog>
+  <dialog class="preview-dialog" id="aboutDialog" aria-labelledby="aboutTitle">
+    <button class="dialog-close" id="closeAbout" type="button" aria-label="Close about">×</button>
+    <div class="dialog-kicker">MATH IS ART / AN ATLAS IN PROGRESS</div>
+    <h2 id="aboutTitle">Ideas you can enter.</h2>
+    <p>These five illustrated covers are the opening design for a collection about mathematical creativity. Each chapter will become a place to experiment, notice a pattern, and follow a proof.</p>
+    <p>The first interactive curve explorer already exists. The chapters shown here are placeholders while their mathematical journeys are being developed.</p>
+    <a class="dialog-link" href="./elliptic-curves.html#explorer">Visit the current curve explorer ↗</a>
+  </dialog>
 </body>
 </html>

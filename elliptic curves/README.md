@@ -1,7 +1,7 @@
-# Math Is Art · first concept
+# Math Is Art · chapter carousel
 
-The first clickable Math Is Art concept: a mathematics homepage, a Number Theory landing page, and an elliptic-curve exhibition. Open `dist/index.html` through a local HTTP server, or use the private Sites deployment.
+The homepage is a full-screen, five-cover chapter selector inspired by the composition and interaction of [Ponpon Mania's chapters page](https://ponpon-mania.com/chapters). All mathematical poster art is original SVG/CSS. See [DESIGN_REFERENCE.md](./DESIGN_REFERENCE.md) for the observed design patterns and implementation choices.
 
-The homepage's chord/tangent demonstration leads to a guided chord-and-reflection journey. The exhibition retains the real curve explorer, editable integer coefficients, discriminant, j-invariant, bounded integral-point search, finite-field counts, LMFDB field guide, and references. Selected integral points are added with exact rational arithmetic.
+The five chapter covers are placeholders: Arithmetic of curves, Differential geometry of curves, Galois theory, Classification of surfaces, and The spectral theorem. Side covers, arrow buttons, keyboard arrows, swipe, and wheel input change the selected cover. The central control opens a preview marked “in preparation.”
 
-All calculations happen in the visitor's browser. There is no user data store, back-end arithmetic engine, or LMFDB mirror. See [REFERENCES.md](./REFERENCES.md) for provenance, limits, and the next lessons.
+The earlier [elliptic curve explorer](./dist/elliptic-curves.html) remains available through a secondary link. Run the static site from `dist/` with a local HTTP server or visit the private Sites deployment. Mathematical provenance and scope for the explorer remain in [REFERENCES.md](./REFERENCES.md).

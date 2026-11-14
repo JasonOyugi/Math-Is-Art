@@ -2,6 +2,8 @@
 
 7 November 2026 · Working direction
 
+> **14 November 2026 update:** The homepage direction is now a full-screen chapter carousel inspired by [Ponpon Mania's chapter selector](https://ponpon-mania.com/chapters). The four-subject navigation and homepage layout proposed below are historical exploration, superseded for the opening experience. The five initial chapter covers are **Arithmetic of curves**, **Differential geometry of curves**, **Galois theory**, **Classification of surfaces**, and **The spectral theorem**. The covers are design placeholders; chapter mathematics follows later. See [the carousel design study](ponpon/DESIGN.md).
+
 ## Thesis
 
 **Math Is Art is a museum and a laboratory for mathematical invention.** The visitor makes a move, sees what survives that move, guesses a rule, and meets the theorem that explains it. The site should make creative thinking visible: choosing a representation, finding an invariant, inventing a useful language, and refining a proof.
