@@ -80,3 +80,32 @@
 @media(max-width:850px){.scene-disc{width:137vw}}
 @media(max-width:560px){.scene-disc{width:182vw}}
 @media(prefers-reduced-motion:reduce){.scene{transition:none}.chapter.is-near .chapter-face{filter:blur(1.5px)}}
+
+/* The canvas draws three expanding color fields and an eased pointer dent. */
+.scene-canvas{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0;transition:opacity .55s ease}
+.scene.has-live-background .scene-canvas{opacity:1}
+.scene.has-live-background .scene-disc{opacity:0;animation:none}
+.scene.has-live-background .scene-fluid{opacity:.22}
+.scene.has-live-background::before{opacity:.24}
+.scene.has-live-background .scene-grain{opacity:.035}
+
+/* Side planes turn away from the eye; spectral fringes extend past their rims. */
+.chapter{transform:translate(-50%,-50%) translateX(calc(var(--offset)*var(--slot))) rotateY(var(--angle-y)) rotate(var(--angle)) scale(var(--scale)) scaleX(var(--stretch));transform-style:preserve-3d}
+.chapter.is-near::before{content:'';position:absolute;inset:-5% -9%;z-index:-1;pointer-events:none;border-radius:8%;background:linear-gradient(90deg,#61eaff8a 0%,#7467ff66 17%,transparent 42%,transparent 58%,#ff4c9f77 84%,#ffe77599 100%);filter:blur(18px);opacity:.85;animation:spectral-breathe 5s ease-in-out infinite alternate}
+.chapter.is-near::after{content:'';position:absolute;right:-30%;top:10%;width:38%;height:80%;z-index:2;pointer-events:none;background:
+  radial-gradient(ellipse 100% 13% at 0% 17%,#50dfffaf,transparent 100%),
+  radial-gradient(ellipse 100% 18% at 0% 43%,#ff4d86ae,transparent 100%),
+  radial-gradient(ellipse 100% 13% at 0% 71%,#efe966ad,transparent 100%),
+  radial-gradient(ellipse 100% 14% at 0% 91%,#7f70ff99,transparent 100%);
+  filter:blur(11px);mix-blend-mode:screen;mask-image:linear-gradient(90deg,#000 0%,#0008 48%,transparent 100%);animation:spectral-breathe 7s ease-in-out infinite alternate}
+.chapter.is-near[data-side="left"]::after{right:auto;left:-30%;transform:scaleX(-1)}
+.chapter.is-near .poster::before{background:linear-gradient(90deg,#75dcff7d 0%,transparent 18%,transparent 72%,#ff6e9a82 90%,#ffe774b0 100%)}
+.chapter.is-near .poster{box-shadow:-20px 0 19px #2acfff91,20px 0 19px #ff407fa3,0 24px 54px #401c5c55}
+.chapter.is-near .poster::after{box-shadow:inset 17px 0 20px #38d8ff88,inset -17px 0 20px #ff628ca6}
+.chapter.is-near[data-side="right"] .poster{animation:side-fluid-right 7s ease-in-out infinite alternate}
+.chapter.is-near[data-side="left"] .poster{animation:side-fluid-left 7s ease-in-out infinite alternate}
+@keyframes side-fluid-right{from{border-radius:3% 10% 13% 3%/3% 8% 12% 3%;transform:skewY(-1.2deg) scaleY(1.015)}to{border-radius:3% 15% 9% 3%/3% 14% 7% 3%;transform:skewY(1.1deg) scaleY(1.035)}}
+@keyframes side-fluid-left{from{border-radius:10% 3% 3% 13%/8% 3% 3% 12%;transform:skewY(1.2deg) scaleY(1.015)}to{border-radius:15% 3% 3% 9%/14% 3% 3% 7%;transform:skewY(-1.1deg) scaleY(1.035)}}
+@keyframes spectral-breathe{to{opacity:.56;filter:blur(17px);scale:1.05 1.03}}
+@media(max-width:560px){.chapter.is-near::after{width:25%;right:-22%;opacity:.6}.chapter.is-near[data-side="left"]::after{left:-22%}}
+@media(prefers-reduced-motion:reduce){.chapter.is-near::before,.chapter.is-near::after,.chapter.is-near .poster{animation:none}}

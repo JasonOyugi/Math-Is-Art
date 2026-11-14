@@ -20,6 +20,7 @@ function selectChapter(index){
   const chapter=chapters[selected];
   scene.style.setProperty('--field',chapter.field);
   scene.style.setProperty('--disc',chapter.disc);
+  window.mathArtBackground?.setPalette(chapter.field,chapter.disc);
   document.getElementById('activeTitle').textContent=chapter.title;
   document.getElementById('activeSubtitle').textContent=chapter.source;
   document.getElementById('activeCount').textContent='Chapter in preparation';
@@ -29,13 +30,15 @@ function selectChapter(index){
     card.style.setProperty('--offset',offset);
     card.style.setProperty('--scale',scale);
     card.style.setProperty('--angle',`${(offset<0?-1:1)*(distance===0?0:distance===1?6:11)}deg`);
+    card.style.setProperty('--angle-y',`${(offset<0?1:-1)*(distance===0?0:distance===1?29:39)}deg`);
     card.style.setProperty('--z',5-distance);
     card.style.setProperty('--opacity',distance>2?0:distance===2?.8:1);
     card.style.setProperty('--brightness',distance===0?1:.96);
     card.style.setProperty('--softness',distance===0?'0px':distance===1?'2.5px':'6px');
-    card.style.setProperty('--stretch',distance===0?1:distance===1?1.13:1.3);
+    card.style.setProperty('--stretch',distance===0?1:distance===1?1.42:1.6);
     card.classList.toggle('is-active',distance===0);
     card.classList.toggle('is-near',distance===1);
+    card.dataset.side=offset<0?'left':offset>0?'right':'center';
     card.classList.toggle('is-far',distance>2);
     card.setAttribute('aria-hidden',distance>2?'true':'false');
     face.tabIndex=distance>2?-1:0;
