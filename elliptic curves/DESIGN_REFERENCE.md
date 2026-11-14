@@ -1,5 +1,9 @@
 # Ponpon Mania chapter selector: design reference
 
+## 14 November refinement
+
+The current site combines this Ponpon Mania full-screen color stage with the selective focus seen in the [Adam Perlis project carousel](https://adamperlis.com/). In that carousel, the central project image is sharp while adjacent images are softened, stretched, and tinted at their edges. Our version uses CSS blur, mild horizontal stretch, organic edge movement, and color fringes on side covers. The background uses layered gradients, a large disc, grain, and slow drifting light. The user requested removal of cover numbers, the about link, and the play triangle; the centered cover itself opens its preview. The fifth chapter is now Spectral theory.
+
 Captured 14 November 2026 from [ponpon-mania.com/chapters](https://ponpon-mania.com/chapters). A desktop screenshot of the second selected chapter at 1280 × 720 was inspected in the working design study. The page was inspected in a browser; Firecrawl scrape ID: `01a1dade-f9d6-73f8-a8f2-ed3f9c3bdb27`.
 
 ## Observed composition

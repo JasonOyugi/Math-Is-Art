@@ -12,3 +12,71 @@
 @media(prefers-reduced-motion:reduce){.scene,.scene-disc,.chapter{transition:none}}
 .chapter-meta strong{font-size:12px;letter-spacing:-.03em;line-height:1.05;white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:clip}
 .hint-mobile{display:none}@media(max-width:560px){.hint-desktop{display:none}.hint-mobile{display:inline}}
+
+/* Full-bleed color and slow organic movement, inspired by the chapter stage. */
+.scene{background:
+  radial-gradient(ellipse 92% 82% at 50% 48%,color-mix(in srgb,var(--field),#fff 7%) 28%,transparent 76%),
+  radial-gradient(ellipse at 3% 95%,color-mix(in srgb,var(--field),#a81d90 43%),transparent 58%),
+  radial-gradient(ellipse at 99% 3%,color-mix(in srgb,var(--field),#ffbf78 47%),transparent 56%),
+  var(--field);
+  transition:background-color .9s ease;
+}
+.scene::before{inset:-14%;background:
+  radial-gradient(ellipse at 12% 30%,#fff8 0,transparent 39%),
+  radial-gradient(ellipse at 85% 87%,#672b6952 0,transparent 43%);
+  mix-blend-mode:soft-light;filter:blur(42px);animation:light-drift 18s ease-in-out infinite alternate;z-index:1}
+.scene-disc{width:min(1430px,114vw);top:52%;background:
+  radial-gradient(circle at 36% 27%,#ffdd9b72 0,transparent 42%),
+  radial-gradient(circle at 72% 78%,#e6526f55 0,transparent 45%),
+  var(--disc);
+  box-shadow:inset 0 0 80px #fff4b43a,0 0 115px 25px color-mix(in srgb,var(--disc),transparent 44%);
+  animation:disc-breathe 16s ease-in-out infinite alternate;
+}
+.scene-disc::after{content:'';position:absolute;inset:7%;border-radius:46% 54% 51% 49%/53% 48% 52% 47%;border:2px solid #fff3b52b;filter:blur(13px);animation:inner-current 24s linear infinite}
+.scene-fluid{position:absolute;inset:-18%;z-index:2;pointer-events:none;overflow:hidden;filter:blur(38px);mix-blend-mode:soft-light;opacity:.9}
+.scene-fluid::before,.scene-fluid::after{content:'';position:absolute;width:62vmax;height:62vmax;border-radius:45% 55% 53% 47%/48% 43% 57% 52%;background:radial-gradient(circle at 35% 35%,#fff8 0,transparent 54%),radial-gradient(circle at 72% 70%,#721c7f6e 0,transparent 60%);animation:fluid-drift 20s ease-in-out infinite alternate}
+.scene-fluid::before{left:-18%;top:-37%}.scene-fluid::after{right:-18%;bottom:-39%;animation-delay:-9s;animation-direction:alternate-reverse;transform:rotate(115deg)}
+.scene-grain{opacity:.11;mix-blend-mode:soft-light}
+@keyframes light-drift{to{transform:translate(5%, -3%) rotate(4deg)}}
+@keyframes disc-breathe{to{transform:translate(-50%,-50%) scale(1.045) rotate(4deg);border-radius:48% 52% 49% 51%/51% 47% 53% 49%}}
+@keyframes inner-current{to{transform:rotate(360deg)}}
+@keyframes fluid-drift{to{transform:translate(13%,8%) rotate(42deg);border-radius:55% 45% 44% 56%/58% 52% 48% 42%}}
+
+/* Focused cover and soft, slightly refracted neighboring covers. */
+.chapter{transform:translate(-50%,-50%) translateX(calc(var(--offset)*var(--slot))) rotate(var(--angle)) scale(var(--scale)) scaleX(var(--stretch));filter:none;transition:transform .9s cubic-bezier(.16,.84,.18,1),opacity .72s ease;}
+.chapter-face{transition:filter .7s ease,transform .9s cubic-bezier(.16,.84,.18,1)}
+.chapter:not(.is-active) .chapter-face{filter:blur(var(--softness)) saturate(1.24) contrast(1.04)}
+.chapter:not(.is-active) .poster{border-radius:3% 5% 4% 3%/4% 3% 5% 4%;box-shadow:-12px 0 19px #57e8ff80,12px 0 19px #ff517a80,0 24px 54px #401c5c55;animation:cover-warp 8s ease-in-out infinite alternate}
+.chapter:not(.is-active) .poster::before{content:'';position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,#5beaff47 0,transparent 19%,transparent 78%,#ff46675e 100%);mix-blend-mode:screen}
+.chapter.is-active .chapter-face{filter:none;transform:scale(1)}
+.chapter.is-active .poster{box-shadow:0 31px 66px #38143452,0 3px 0 #ffffff80 inset}
+@keyframes cover-warp{to{border-radius:5% 3% 5% 3%/3% 5% 3% 6%;transform:skewY(-1.4deg) scaleY(1.025)}}
+
+/* One title grammar across all five covers: roman main words, italic connector. */
+.poster-title,.poster-differential .poster-title,.poster-galois .poster-title,.poster-surfaces .poster-title,.poster-spectral .poster-title{top:8%;font-size:clamp(30px,4.45vmin,54px);line-height:.96;text-shadow:none}
+.poster-differential .poster-title,.poster-surfaces .poster-title{font-size:clamp(24px,3.55vmin,44px)}
+.poster-title i{font:italic 700 .83em Georgia,serif;letter-spacing:-.085em;text-transform:lowercase}
+.poster-differential .poster-title,.poster-surfaces .poster-title{color:#fff6dd;text-shadow:2px 3px 0 #142c6a99}
+.poster-surfaces .poster-title{text-shadow:2px 3px 0 #1a515299}
+.poster-spectral .poster-title{color:#fff1d5}
+.header-mark{font-size:23px;font-weight:900;margin-top:2px}
+.header-edition span{display:none}
+.chapter-control{width:min(350px,calc(100vw - 30px));height:78px;top:calc(48% + var(--poster-size)/2 - 49px);grid-template-columns:minmax(0,1fr) 65px;padding:11px 20px 11px 27px}
+.chapter-meta strong{font-size:13px}
+.chapter-meta small{font-size:9px}
+.interaction-hint{top:calc(48% + var(--poster-size)/2 + 43px)}
+@media(max-width:850px){.scene-disc{width:154vw}}
+@media(max-width:560px){.scene-disc{width:190vw;top:48%}.chapter-control{top:calc(45% + var(--poster-size)/2 - 35px);height:72px;grid-template-columns:minmax(0,1fr) 56px;padding:9px 13px 9px 21px}.interaction-hint{top:calc(45% + var(--poster-size)/2 + 54px)}.poster-title,.poster-differential .poster-title,.poster-galois .poster-title,.poster-surfaces .poster-title,.poster-spectral .poster-title{font-size:clamp(26px,7vw,40px)}.poster-differential .poster-title,.poster-surfaces .poster-title{font-size:clamp(22px,5.9vw,33px)}}
+@media(max-height:610px){.chapter-control{top:calc(46% + var(--poster-size)/2 - 45px)}}
+@media(prefers-reduced-motion:reduce){.scene::before,.scene-disc,.scene-disc::after,.scene-fluid::before,.scene-fluid::after,.chapter:not(.is-active) .poster{animation:none}.chapter-face{transition:none}}
+@property --field{syntax:'<color>';inherits:true;initial-value:#efa4b8}
+@property --disc{syntax:'<color>';inherits:true;initial-value:#f69235}
+.scene{transition:--field .95s ease,--disc .95s ease}
+.scene-disc{width:min(1250px,94vw)}
+.chapter.is-near .chapter-face{filter:blur(var(--softness)) saturate(1.28) contrast(1.04)}
+.chapter.is-near .poster{mask-image:radial-gradient(ellipse 112% 84% at 50% 50%,#000 80%,transparent 100%)}
+.chapter:not(.is-active):not(.is-near) .chapter-face{filter:blur(var(--softness)) saturate(1.2)}
+.scene,html,body{overflow:clip}
+@media(max-width:850px){.scene-disc{width:137vw}}
+@media(max-width:560px){.scene-disc{width:182vw}}
+@media(prefers-reduced-motion:reduce){.scene{transition:none}.chapter.is-near .chapter-face{filter:blur(1.5px)}}

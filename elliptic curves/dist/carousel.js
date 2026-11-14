@@ -3,7 +3,7 @@ const chapters = [
   {title:'Differential geometry of curves',source:'Plane curves · SML 96',detail:'Following Differential Geometry of Plane Curves, Student Mathematical Library 96.',field:'#b4a5ec',disc:'#6657cf'},
   {title:'Galois theory',source:'Reading list to be selected',detail:'The lecture notes and primary references for this chapter will be selected during development.',field:'#9fd6b9',disc:'#f4c849'},
   {title:'Classification of surfaces',source:'References to be selected',detail:'The source path for the classification of surfaces will be selected during development.',field:'#f2b3a2',disc:'#5ab6a9'},
-  {title:'The spectral theorem',source:'After Einsiedler & Ward',detail:'Following Functional Analysis, Spectral Theory, and Applications by Manfred Einsiedler and Thomas Ward.',field:'#9daee3',disc:'#263e79'}
+  {title:'Spectral theory',source:'After Einsiedler & Ward',detail:'Following Functional Analysis, Spectral Theory, and Applications by Manfred Einsiedler and Thomas Ward.',field:'#9daee3',disc:'#263e79'}
 ];
 const scene=document.getElementById('scene');
 const cards=[...document.querySelectorAll('.chapter')];
@@ -11,30 +11,31 @@ const track=document.getElementById('carouselTrack');
 const prev=document.getElementById('prevChapter');
 const next=document.getElementById('nextChapter');
 const dialog=document.getElementById('chapterDialog');
-const aboutDialog=document.getElementById('aboutDialog');
 let selected=0;
 let swipeStart=null;
 let suppressClick=false;
 let lastWheel=0;
-const two=n=>String(n).padStart(2,'0');
 function selectChapter(index){
   selected=Math.max(0,Math.min(chapters.length-1,index));
   const chapter=chapters[selected];
   scene.style.setProperty('--field',chapter.field);
   scene.style.setProperty('--disc',chapter.disc);
-  document.querySelector('.header-edition span').textContent=`${two(selected+1)} / 05`;
-  document.getElementById('activeTitle').textContent=`${two(selected+1)}. ${chapter.title}`;
+  document.getElementById('activeTitle').textContent=chapter.title;
   document.getElementById('activeSubtitle').textContent=chapter.source;
-  document.getElementById('activeCount').textContent=`${two(selected+1)}:05 · in preparation`;
+  document.getElementById('activeCount').textContent='Chapter in preparation';
   cards.forEach((card,i)=>{
     const offset=i-selected, distance=Math.abs(offset), face=card.querySelector('.chapter-face');
-    const scale=distance===0?1:distance===1?.55:.38;
+    const scale=distance===0?1:distance===1?.68:.48;
     card.style.setProperty('--offset',offset);
     card.style.setProperty('--scale',scale);
-    card.style.setProperty('--angle',`${(offset<0?-1:1)*(distance===0?0:distance===1?8:13)}deg`);
+    card.style.setProperty('--angle',`${(offset<0?-1:1)*(distance===0?0:distance===1?6:11)}deg`);
     card.style.setProperty('--z',5-distance);
     card.style.setProperty('--opacity',distance>2?0:distance===2?.8:1);
     card.style.setProperty('--brightness',distance===0?1:.96);
+    card.style.setProperty('--softness',distance===0?'0px':distance===1?'2.5px':'6px');
+    card.style.setProperty('--stretch',distance===0?1:distance===1?1.13:1.3);
+    card.classList.toggle('is-active',distance===0);
+    card.classList.toggle('is-near',distance===1);
     card.classList.toggle('is-far',distance>2);
     card.setAttribute('aria-hidden',distance>2?'true':'false');
     face.tabIndex=distance>2?-1:0;
@@ -46,7 +47,6 @@ function selectChapter(index){
 }
 function openChapter(){
   const chapter=chapters[selected];
-  document.getElementById('dialogNumber').textContent=`CHAPTER ${two(selected+1)} / 05`;
   document.getElementById('dialogTitle').textContent=chapter.title;
   document.getElementById('dialogSource').textContent=chapter.detail;
   document.getElementById('dialogExplorer').hidden=selected!==0;
@@ -59,15 +59,11 @@ cards.forEach((card,i)=>card.querySelector('.chapter-face').addEventListener('cl
 }));
 prev.addEventListener('click',()=>selectChapter(selected-1));
 next.addEventListener('click',()=>selectChapter(selected+1));
-document.getElementById('openChapter').addEventListener('click',openChapter);
 document.getElementById('closeDialog').addEventListener('click',()=>dialog.close());
-dialog.addEventListener('close',()=>document.getElementById('openChapter').focus());
-document.getElementById('aboutButton').addEventListener('click',()=>{aboutDialog.showModal();document.getElementById('closeAbout').focus();});
-document.getElementById('closeAbout').addEventListener('click',()=>aboutDialog.close());
-aboutDialog.addEventListener('close',()=>document.getElementById('aboutButton').focus());
-for(const modal of [dialog,aboutDialog])modal.addEventListener('click',e=>{if(e.target===modal)modal.close();});
+dialog.addEventListener('close',()=>cards[selected].querySelector('.chapter-face').focus());
+dialog.addEventListener('click',e=>{if(e.target===dialog)dialog.close();});
 document.addEventListener('keydown',e=>{
-  if(dialog.open||aboutDialog.open)return;
+  if(dialog.open)return;
   if(e.key==='ArrowRight'){e.preventDefault();selectChapter(selected+1);}
   if(e.key==='ArrowLeft'){e.preventDefault();selectChapter(selected-1);}
   if(e.key==='Home'){e.preventDefault();selectChapter(0);}
