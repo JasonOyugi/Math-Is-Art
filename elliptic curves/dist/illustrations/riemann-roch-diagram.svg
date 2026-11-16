@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 205">
+  <defs><pattern id="dots" width="15" height="15" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r=".9" fill="#3e315c" opacity=".17"/></pattern></defs>
+  <rect width="220" height="205" fill="#bbb9e7"/>
+  <rect width="220" height="205" fill="url(#dots)"/>
+  <path d="M13 65c47-12 138-11 194 0M13 145c45 8 143 8 194-3" fill="none" stroke="#f6d57b" stroke-width="3" opacity=".8"/>
+  <g fill="#34284e" font-family="Georgia,serif" font-size="23" font-style="italic">
+    <text x="13" y="58">K(X)</text><text x="118" y="58" font-size="21">H(X;ℚ)</text>
+    <text x="13" y="137">K(Y)</text><text x="118" y="137" font-size="21">H(Y;ℚ)</text>
+  </g>
+  <g fill="none" stroke="#3d315d" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M75 50c12-2 22-2 36 0m-7-5l7 5-7 5"/>
+    <path d="M75 129c12-2 22-2 36 0m-7-5l7 5-7 5"/>
+    <path d="M40 68c-2 15-2 29 0 42m-5-7l5 7 5-7"/>
+    <path d="M157 68c-2 15-2 29 0 42m-5-7l5 7 5-7"/>
+  </g>
+  <g fill="#713c70" font-family="Georgia,serif" font-size="12" font-style="italic">
+    <text x="78" y="35">td(X) · ch</text><text x="77" y="114">td(Y) · ch</text>
+    <text x="49" y="94">f<tspan baseline-shift="sub" font-size="9">*</tspan></text>
+    <text x="166" y="94">f<tspan baseline-shift="sub" font-size="9">*</tspan></text>
+  </g>
+  <path d="M18 165c43-10 110-5 182 0" fill="none" stroke="#fff4d7" stroke-width="3" stroke-linecap="round" opacity=".8"/>
+</svg>

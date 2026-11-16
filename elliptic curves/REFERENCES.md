@@ -20,6 +20,16 @@ This file records the sources and the decisions behind the first release and the
 | [MIT 18.783, Lecture 1](https://math.mit.edu/classes/18.783/2015/Lecture1.pdf) | Smoothness condition, group law, point at infinity, and curves over finite fields. | Introductory theory for the current visual tools. |
 | [Joseph H. Silverman, *The Arithmetic of Elliptic Curves*, 2nd ed.](https://link.springer.com/book/10.1007/978-0-387-09494-6) | Deeper reference for algebraic curves, local rings, valuations, and elliptic-curve arithmetic; source of the exercises discussed in chat. | Textbook is not reproduced; cite chapter and exercise when a detailed lesson is added. |
 
+## Mathematics in the artwork
+
+The Arithmetic cover uses the complex-torus picture (E(\mathbb C)\simeq\mathbb C/\Lambda). Its dots (O,P,Q,R) represent selected rational points in (E(\mathbb Q)); their placement is illustrative, not a plot of a specified Weierstrass model.
+
+The Varieties tile draws (x^2+y^2=1). The line through (P=(-1,0)) with rational slope (1/2) meets the circle again at (Q=(3/5,4/5)). This follows by substituting (y=(x+1)/2) into the circle equation.
+
+The Curves tile traces the zero set of ((x^2+y^2-1)^3-x^2y^3), a degree-six algebraic heart. Its SVG contour was calculated from that polynomial, then styled as a loose hand drawing.
+
+The Riemann–Roch tile adapts the user-provided commutative square with (K(X), K(Y), H(X;\mathbb Q), H(Y;\mathbb Q)), pushforwards, and (\mathrm{td}\cdot\mathrm{ch}). This is a **Grothendieck–Riemann–Roch** motif rather than a statement of the classical curve theorem; the tile is an illustration, not a proof or a complete theorem statement.
+
 ## Mathematics in the first release
 
 The browser works with integral \(a,b\) between −12 and 12 and the short equation \(y^2=x^3+ax+b\). It displays real points in a finite viewport. The discriminant is \(\Delta=-16(4a^3+27b^2)\); \(\Delta\ne0\) is the smoothness condition in characteristic zero. The displayed \(j\)-invariant is \(1728\cdot4a^3/(4a^3+27b^2)\).

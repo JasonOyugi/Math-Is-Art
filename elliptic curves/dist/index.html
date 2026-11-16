@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="./chapter-page.css">
   <script src="./background.js" defer></script>
   <script src="./carousel.js" defer></script>
-  <script src="./chapter-page.js" defer></script>
+  <script src="./chapter-page.js?v=artwork-1" defer></script>
   <script src="./pixel-trail.js" defer></script>
 </head>
 <body>
@@ -35,18 +35,30 @@
       <h1 class="sr-only">Math Is Art: choose a chapter</h1>
       <div class="carousel-track" id="carouselTrack">
         <article class="chapter" data-chapter="0">
-          <button class="chapter-face" type="button" data-card="0" aria-label="Open Arithmetic of curves chapter list">
+          <button class="chapter-face" type="button" data-card="0" aria-label="Open Arithmetic of curves chapter list" aria-description="A torus with marked rational points">
             <span class="poster poster-curves">
               <svg class="poster-art" viewBox="0 0 600 600" aria-hidden="true">
-                <defs><pattern id="curve-grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#1c2441" stroke-opacity=".13" stroke-width="1"/></pattern></defs>
-                <rect width="600" height="600" fill="url(#curve-grid)"/>
-                <circle cx="452" cy="375" r="225" fill="#ff755d"/>
-                <circle cx="443" cy="370" r="162" fill="none" stroke="#f9dfa1" stroke-width="2"/>
-                <path d="M-40 505 C80 335 170 483 244 454 S322 258 391 354 S490 551 638 312" fill="none" stroke="#211a3d" stroke-width="17" stroke-linecap="round"/>
-                <path d="M-40 520 C80 350 170 498 244 469 S322 273 391 369 S490 566 638 327" fill="none" stroke="#fff2c7" stroke-width="4"/>
-                <path d="M99 500L522 291" stroke="#1e1d3c" stroke-width="3" stroke-dasharray="12 9"/>
-                <circle cx="224" cy="438" r="17" fill="#f4eac6" stroke="#1e1d3c" stroke-width="6"/><circle cx="391" cy="354" r="17" fill="#f4eac6" stroke="#1e1d3c" stroke-width="6"/><circle cx="491" cy="439" r="17" fill="#f4eac6" stroke="#1e1d3c" stroke-width="6"/>
-                <text x="30" y="550" fill="#1e1d3c" font-size="15" font-family="Arial" font-weight="700" letter-spacing="6">P + Q = R</text>
+                <defs>
+                  <pattern id="torus-grid" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" fill="none" stroke="#1c2441" stroke-opacity=".13" stroke-width="1"/></pattern>
+                  <linearGradient id="torus-clay" x1="0" y1="0" x2=".2" y2="1"><stop offset="0" stop-color="#ffe2a1"/><stop offset=".48" stop-color="#ff9b74"/><stop offset="1" stop-color="#ed6673"/></linearGradient>
+                </defs>
+                <rect width="600" height="600" fill="url(#torus-grid)"/>
+                <circle cx="458" cy="373" r="205" fill="#fa796e" opacity=".9"/>
+                <circle cx="480" cy="178" r="44" fill="#fff1c8" stroke="#24213f" stroke-width="3"/>
+                <text x="453" y="172" fill="#24213f" font-family="Georgia,serif" font-size="23" font-style="italic">ℂ/Λ</text>
+                <path d="M452 181h56" stroke="#24213f" stroke-width="2" opacity=".55"/>
+                <text x="450" y="202" fill="#24213f" font-family="Georgia,serif" font-size="20" font-style="italic">E(ℚ)</text>
+                <ellipse cx="310" cy="370" rx="232" ry="145" fill="#27304f" opacity=".34"/>
+                <ellipse cx="310" cy="348" rx="228" ry="142" fill="url(#torus-clay)" stroke="#24213f" stroke-width="9"/>
+                <path d="M102 393C145 473 224 496 309 498c103 2 182-31 216-104" fill="none" stroke="#762f69" stroke-width="9" opacity=".55" stroke-linecap="round"/>
+                <path d="M120 300c69-84 286-110 378-3" fill="none" stroke="#fff1bc" stroke-width="9" opacity=".75" stroke-linecap="round"/>
+                <path d="M143 263c-19 74-7 145 40 200m82-244c-34 80-37 190-4 266m97-266c36 85 38 190 6 266m95-223c23 73 10 151-43 207" fill="none" stroke="#822e68" stroke-width="4" opacity=".52" stroke-linecap="round"/>
+                <ellipse cx="310" cy="348" rx="117" ry="68" fill="#2a2d47" stroke="#24213f" stroke-width="8"/>
+                <ellipse cx="310" cy="330" rx="104" ry="46" fill="#a4e056"/>
+                <path d="M208 350c37 57 161 60 205 1" fill="none" stroke="#ffbe8e" stroke-width="11" stroke-linecap="round"/>
+                <path d="M209 319c47-45 159-44 203 0" fill="none" stroke="#fff1c4" stroke-width="4" opacity=".8"/>
+                <g fill="#fff4cb" stroke="#24213f" stroke-width="5"><circle cx="198" cy="259" r="13"/><circle cx="401" cy="254" r="13"/><circle cx="145" cy="402" r="13"/><circle cx="471" cy="415" r="13"/></g>
+                <g fill="#24213f" font-family="Georgia,serif" font-size="28" font-style="italic" font-weight="700"><text x="158" y="226">O</text><text x="423" y="226">P</text><text x="105" y="447">Q</text><text x="491" y="450">R</text></g>
               </svg>
               <span class="poster-title">ARITHMETIC<br><i>of</i> CURVES</span>
             </span>
@@ -134,9 +146,9 @@
       <article class="study-row">
         <div class="study-heading"><h3>Algebraic<br>Curves</h3></div>
         <div class="topic-strip" tabindex="0" aria-label="Algebraic Curves subchapters; scroll horizontally to explore">
-          <button class="topic-tile tile-lattice" data-parent="Algebraic Curves" type="button"><span class="tile-art" aria-hidden="true"></span><span class="tile-title">Varieties</span></button>
-          <button class="topic-tile tile-curve" data-parent="Algebraic Curves" type="button"><span class="tile-art" aria-hidden="true"></span><span class="tile-title">Curves</span></button>
-          <button class="topic-tile tile-orbit" data-parent="Algebraic Curves" type="button"><span class="tile-art" aria-hidden="true"></span><span class="tile-title">Riemann–Roch</span></button>
+          <button class="topic-tile tile-math" data-parent="Algebraic Curves" type="button" aria-label="Varieties: a line of slope one half through minus one, zero meets the circle again at three fifths, four fifths"><img class="tile-art math-illustration" src="./illustrations/circle-rational-points.svg" alt=""><span class="tile-title">Varieties</span></button>
+          <button class="topic-tile tile-math" data-parent="Algebraic Curves" type="button" aria-label="Curves: a degree-six algebraic heart"><img class="tile-art math-illustration" src="./illustrations/algebraic-heart.svg" alt=""><span class="tile-title">Curves</span></button>
+          <button class="topic-tile tile-math" data-parent="Algebraic Curves" type="button" aria-label="Riemann–Roch: a Grothendieck–Riemann–Roch commutative square"><img class="tile-art math-illustration" src="./illustrations/riemann-roch-diagram.svg" alt=""><span class="tile-title">Riemann–Roch</span></button>
         </div>
       </article>
       <article class="study-row">
