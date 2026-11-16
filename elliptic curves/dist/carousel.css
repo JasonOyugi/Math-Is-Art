@@ -109,3 +109,8 @@
 @keyframes spectral-breathe{to{opacity:.56;filter:blur(17px);scale:1.05 1.03}}
 @media(max-width:560px){.chapter.is-near::after{width:25%;right:-22%;opacity:.6}.chapter.is-near[data-side="left"]::after{left:-22%}}
 @media(prefers-reduced-motion:reduce){.chapter.is-near::before,.chapter.is-near::after,.chapter.is-near .poster{animation:none}}
+
+/* Keep the chapter covers unobstructed after removing the black controls. */
+.interaction-hint{top:calc(48% + var(--poster-size)/2 + 18px)}
+.scene-bottom{justify-content:flex-end}
+@media(max-width:560px){.interaction-hint{top:calc(45% + var(--poster-size)/2 + 20px)}}
