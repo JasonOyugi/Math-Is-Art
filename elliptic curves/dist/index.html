@@ -12,6 +12,7 @@
   <script src="./background.js" defer></script>
   <script src="./carousel.js" defer></script>
   <script src="./chapter-page.js" defer></script>
+  <script src="./pixel-trail.js" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#chapters">Skip to chapters</a>
@@ -32,7 +33,6 @@
 
     <main class="carousel" id="chapters" aria-label="Math Is Art chapters">
       <h1 class="sr-only">Math Is Art: choose a chapter</h1>
-      <p class="side-label">FIVE CHAPTERS IN THE MAKING <span aria-hidden="true">✳</span></p>
       <div class="carousel-track" id="carouselTrack">
         <article class="chapter" data-chapter="0">
           <button class="chapter-face" type="button" data-card="0" aria-label="Open Arithmetic of curves chapter list">
@@ -49,7 +49,6 @@
                 <text x="30" y="550" fill="#1e1d3c" font-size="15" font-family="Arial" font-weight="700" letter-spacing="6">P + Q = R</text>
               </svg>
               <span class="poster-title">ARITHMETIC<br><i>of</i> CURVES</span>
-              <span class="poster-footer">MATH IS ART <span>CURVES / ℚ</span></span>
             </span>
           </button>
         </article>
@@ -66,7 +65,6 @@
                 <path d="M106 485l24-25m0 0l-24-5m24 5l-4 24M493 314l24-26m0 0l-24-4m24 4l-4 25" fill="none" stroke="#142c6a" stroke-width="4"/>
               </svg>
               <span class="poster-title">DIFFERENTIAL<br>GEOMETRY<br><i>of</i> CURVES</span>
-              <span class="poster-footer">MATH IS ART <span>TANGENTS / κ</span></span>
             </span>
           </button>
         </article>
@@ -83,7 +81,6 @@
                 <text x="453" y="251" fill="#2b2d61" font-size="100" font-family="Georgia">σ</text>
               </svg>
               <span class="poster-title">GALOIS<br>THEORY</span>
-              <span class="poster-footer">MATH IS ART <span>ROOTS / SYMMETRY</span></span>
             </span>
           </button>
         </article>
@@ -99,7 +96,6 @@
               </svg>
               <span class="geometry-badge">GEOMETRY</span>
               <span class="poster-title">CLASSIFICATION<br>THEORY</span>
-              <span class="poster-footer">MATH IS ART <span>SHAPE / GENUS</span></span>
             </span>
           </button>
         </article>
@@ -116,7 +112,6 @@
                 <circle cx="315" cy="235" r="15" fill="#f3dfaa"/><circle cx="395" cy="444" r="15" fill="#f3dfaa"/>
               </svg>
               <span class="poster-title">SPECTRAL<br>THEORY</span>
-              <span class="poster-footer">MATH IS ART <span>OPERATORS / λ</span></span>
             </span>
           </button>
         </article>
@@ -128,18 +123,16 @@
   </div>
 
   <section class="arithmetic-page" id="arithmetic" aria-labelledby="arithmetic-title">
+    <canvas class="pixel-trail" id="pixelTrail" aria-hidden="true"></canvas>
     <div class="arithmetic-head">
-      <a class="back-to-covers" href="#chapters">← BACK TO THE COVERS</a>
-      <span class="page-mark">MATH IS ART / NUMBER THEORY</span>
+      <span class="page-mark">NUMBER THEORY</span>
     </div>
     <div class="arithmetic-intro">
-      <p class="section-kicker">AFTER SILVERMAN · A VISUAL READING PATH</p>
       <h2 id="arithmetic-title">Arithmetic<br><em>of</em> curves<span class="intro-period">.</span></h2>
-      <p>Three chapters. Eighteen places to begin. Follow a curve from its geometry to its arithmetic, and see how different ideas meet.</p>
     </div>
     <div class="study-list" aria-label="Arithmetic of curves chapters">
       <article class="study-row">
-        <div class="study-heading"><span class="study-eyebrow">CHAPTER · 3 STUDIES</span><h3>Algebraic<br>Curves</h3><p>Shape, functions, and the geometry behind the equation.</p></div>
+        <div class="study-heading"><h3>Algebraic<br>Curves</h3></div>
         <div class="topic-strip" tabindex="0" aria-label="Algebraic Curves subchapters; scroll horizontally to explore">
           <button class="topic-tile tile-lattice" data-parent="Algebraic Curves" type="button"><span class="tile-art" aria-hidden="true"></span><span class="tile-title">Varieties</span></button>
           <button class="topic-tile tile-curve" data-parent="Algebraic Curves" type="button"><span class="tile-art" aria-hidden="true"></span><span class="tile-title">Curves</span></button>
@@ -147,7 +140,7 @@
         </div>
       </article>
       <article class="study-row">
-        <div class="study-heading"><span class="study-eyebrow">CHAPTER · 8 STUDIES</span><h3>Elliptic<br>Curves</h3><p>One kind of curve, seen through many mathematical worlds.</p></div>
+        <div class="study-heading"><h3>Elliptic<br>Curves</h3></div>
         <div class="topic-strip" tabindex="0" aria-label="Elliptic Curves subchapters; scroll horizontally to explore">
           <button class="topic-tile tile-curve" data-parent="Elliptic Curves" type="button"><span class="tile-art" aria-hidden="true"></span><span class="tile-title">Overview</span></button>
           <button class="topic-tile tile-orbit" data-parent="Elliptic Curves" type="button"><span class="tile-art" aria-hidden="true"></span><span class="tile-title">The formal group</span></button>
@@ -160,7 +153,7 @@
         </div>
       </article>
       <article class="study-row">
-        <div class="study-heading"><span class="study-eyebrow">CHAPTER · 7 STUDIES</span><h3>Modular forms<br>and Curves</h3><p>Patterns of symmetry that connect curves to forms and L-functions.</p></div>
+        <div class="study-heading"><h3>Modular forms<br>and Curves</h3></div>
         <div class="topic-strip" tabindex="0" aria-label="Modular forms and Curves subchapters; scroll horizontally to explore">
           <button class="topic-tile tile-rings" data-parent="Modular forms and Curves" type="button"><span class="tile-art" aria-hidden="true"></span><span class="tile-title">Overview</span></button>
           <button class="topic-tile tile-grid" data-parent="Modular forms and Curves" type="button"><span class="tile-art" aria-hidden="true"></span><span class="tile-title">Dimension formulas</span></button>

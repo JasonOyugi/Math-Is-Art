@@ -21,13 +21,6 @@
 
   window.mathArtChapters = { openArithmetic };
 
-  document.querySelector('.back-to-covers').addEventListener('click', event => {
-    event.preventDefault();
-    scene.classList.remove('is-opening');
-    history.replaceState(null, '', '#chapters');
-    scene.scrollIntoView({ behavior: reducedMotion.matches ? 'instant' : 'smooth', block: 'start' });
-  });
-
   document.querySelectorAll('.topic-tile').forEach(tile => tile.addEventListener('click', () => {
     const title = tile.querySelector('.tile-title').textContent;
     const parent = tile.dataset.parent;
