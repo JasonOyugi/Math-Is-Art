@@ -33,7 +33,7 @@
     document.getElementById('dialogTitle').textContent = title;
     document.getElementById('dialogSource').textContent = artworkNotes[title] || `A visual study within ${parent}.`;
     dialog.querySelector('.dialog-note').textContent = 'This subchapter is in preparation. The visual reading path is ready for exploration.';
-    document.getElementById('dialogExplorer').hidden = !(parent === 'Elliptic Curves' && title === 'Overview');
+    document.getElementById('dialogExplorer').hidden = true;
     dialog.showModal();
     document.getElementById('closeDialog').focus();
   }));
