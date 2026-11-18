@@ -24,7 +24,7 @@ This file records the sources and the decisions behind the first release and the
 
 The Arithmetic cover uses the complex-torus picture (E(\mathbb C)\simeq\mathbb C/\Lambda). Its dots (O,P,Q,R) represent selected rational points in (E(\mathbb Q)); their placement is illustrative, not a plot of a specified Weierstrass model.
 
-The Varieties tile draws (x^2+y^2=1). The line through (P=(-1,0)) with rational slope (1/2) meets the circle again at (Q=(3/5,4/5)). This follows by substituting (y=(x+1)/2) into the circle equation.
+An earlier, now unused Varieties illustration draws (x^2+y^2=1). The line through (P=(-1,0)) with rational slope (1/2) meets the circle again at (Q=(3/5,4/5)). This follows by substituting (y=(x+1)/2) into the circle equation.
 
 The Curves tile traces the zero set of ((x^2+y^2-1)^3-x^2y^3), a degree-six algebraic heart. Its SVG contour was calculated from that polynomial, then styled as a loose hand drawing.
 
